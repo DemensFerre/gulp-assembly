@@ -1,4 +1,5 @@
 const { src, dest } = require("gulp");
+const uglify = require("gulp-uglify");
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
 
@@ -14,6 +15,7 @@ const js = () => {
         })),
       })
     )
+    .pipe(uglify())
     .pipe(dest(path.build.js));
 };
 
