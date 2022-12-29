@@ -1,30 +1,25 @@
-const { series, parallel, src, dest, watch } = require("gulp");
-const sass = require("gulp-sass")(require("sass"));
+const { series, parallel, watch } = require("gulp");
 const browserSync = require("browser-sync").create();
-const autoPrefixer = require("gulp-autoprefixer");
-const rename = require("gulp-rename");
-const cssnano = require("gulp-cssnano");
-const plumber = require("gulp-plumber");
-const del = require("del");
 
-const path = {
-  src: {
-    styles: `./src/scss/**/*.scss`,
-    html: `./src/html/*.html`,
-  },
-  build: {
-    styles: `./build/css`,
-    html: `./build`,
-  },
+const path = require("./config/path.js");
+
+const html = require("./tasks/html");
+const styles = require("./tasks/styles");
+const js = require("./tasks/js");
+
+const watcher = () => {
+  watch(path.watch.html, html).on("all", browserSync.reload);
+  watch(path.watch.styles, styles).on("all", browserSync.reload);
+  watch(path.watch.js, js).on("all", browserSync.reload);
 };
 
-const styles = () => {
-  return src(path.src.styles)
-    .pipe(sass())
-    .pipe(autoPrefixer())
-    .pipe(dest(path.build.styles));
+const server = () => {
+  browserSync.init({
+    server: {
+      baseDir: "./build",
+    },
+  });
 };
 
-exports.default = function () {
-  watch(path.src.styles, styles);
-};
+exports.css = styles;
+exports.dev = series(parallel(html, styles, js), parallel(watcher, server));
