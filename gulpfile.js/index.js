@@ -8,6 +8,7 @@ global.$ = {
   app: require("./config/app.js"),
 };
 
+const clear = require("./tasks/clear");
 const server = require("./tasks/server");
 const html = require("./tasks/html");
 const styles = require("./tasks/styles");
@@ -22,7 +23,10 @@ const watcher = () => {
   $.gulp.watch($.path.watch.img, img);
 };
 
-const build = $.gulp.parallel(html, styles, js, img, fonts);
+const build = $.gulp.series(
+  clear,
+  $.gulp.parallel(html, styles, js, img, fonts)
+);
 const dev = $.gulp.series(build, $.gulp.parallel(watcher, server));
 
 exports.default = $.app.isProd ? build : dev;

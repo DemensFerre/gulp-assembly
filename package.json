@@ -22,6 +22,7 @@
   "homepage": "https://github.com/DemensFerre/gulp-assembly#readme",
   "devDependencies": {
     "browser-sync": "^2.27.11",
+    "del": "^6.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-csso": "^4.0.1",
