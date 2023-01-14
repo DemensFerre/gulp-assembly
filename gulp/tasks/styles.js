@@ -21,16 +21,16 @@ export const styles = () => {
 			})
 		)
 		.pipe(sass())
-		.pipe(gcmq())
-		.pipe($.gulpIf($.app.isProd, autoPrefixer()))
 		.pipe(
 			$.gulpIf(
-				$.app.isProd,
+				$.app.isDev,
 				$.gulp.dest($.path.build.styles, {
 					sourcemaps: $.app.isDev,
 				})
 			)
 		)
+		.pipe($.gulpIf($.app.isProd, autoPrefixer()))
+		.pipe($.gulpIf($.app.isProd, gcmq()))
 		.pipe($.gulpIf($.app.isProd, csso()))
 		.pipe(
 			$.gulpIf(
@@ -40,10 +40,6 @@ export const styles = () => {
 				})
 			)
 		)
-		.pipe(
-			$.gulp.dest($.path.build.styles, {
-				sourcemaps: $.app.isDev,
-			})
-		)
+		.pipe($.gulpIf($.app.isProd, $.gulp.dest($.path.build.styles)))
 		.pipe($.browserSync.stream());
 };
