@@ -1,5 +1,4 @@
-import uglify from "gulp-uglify";
-import rename from "gulp-rename";
+import webpack from "webpack-stream";
 
 export const js = () => {
 	return $.gulp
@@ -13,19 +12,12 @@ export const js = () => {
 			})
 		)
 		.pipe(
-			$.gulpIf(
-				$.app.isProd,
-				$.gulp.dest($.path.build.js, { sourcemaps: $.app.isDev })
-			)
-		)
-		.pipe($.gulpIf($.app.isProd, uglify()))
-		.pipe(
-			$.gulpIf(
-				$.app.isProd,
-				rename({
-					suffix: ".min",
-				})
-			)
+			webpack({
+				mode: $.app.isDev ? "development" : "production",
+				output: {
+					filename: $.app.isDev ? "main.js" : "main.min.js",
+				},
+			})
 		)
 		.pipe($.gulp.dest($.path.build.js, { sourcemaps: $.app.isDev }))
 		.pipe($.browserSync.stream());
