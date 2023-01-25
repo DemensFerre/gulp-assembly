@@ -1,6 +1,7 @@
-@import "./settings/fonts.scss";
-@import "./settings/vars.scss";
-@import "./settings/base.scss";
+@import "./settings/libs";
+@import "./settings/fonts";
+@import "./settings/vars";
+@import "./settings/base";
 
-@import "./components/header.scss";
-@import "./components/footer.scss";
+@import "./components/components";
+@import "./main-blocks/main-blocks";
