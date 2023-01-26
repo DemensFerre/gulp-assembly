@@ -5,6 +5,7 @@ export const path = {
 	root: `${build}`,
 
 	src: {
+		files: `${src}/files/**/*.*`,
 		styles: `${src}/scss/*.scss`,
 		html: `${src}/html/*.html`,
 		js: `${src}/js/*.js`,
@@ -13,6 +14,7 @@ export const path = {
 		fonts: `${src}/fonts/*.*`,
 	},
 	build: {
+		files: `${build}/files`,
 		styles: `${build}/css`,
 		html: `${build}`,
 		js: `${build}/js`,
@@ -20,6 +22,7 @@ export const path = {
 		fonts: `${build}/fonts`,
 	},
 	watch: {
+		files: `${src}/files/**/*.*`,
 		styles: `${src}/scss/**/*.scss`,
 		html: `${src}/**/*.html`,
 		js: `${src}/js/**/*.js`,

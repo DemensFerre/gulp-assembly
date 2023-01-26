@@ -24,17 +24,19 @@ import { styles } from "./gulp/tasks/styles.js";
 import { js } from "./gulp/tasks/js.js";
 import { img } from "./gulp/tasks/img.js";
 import { fonts } from "./gulp/tasks/fonts.js";
+import { copy } from "./gulp/tasks/copy.js";
 
 const watcher = () => {
 	$.gulp.watch($.path.watch.html, html);
 	$.gulp.watch($.path.watch.styles, styles);
 	$.gulp.watch($.path.watch.js, js);
 	$.gulp.watch($.path.watch.img, img);
+	$.gulp.watch($.path.watch.files, copy);
 };
 
 const build = $.gulp.series(
 	clear,
-	$.gulp.parallel(html, styles, js, img, fonts)
+	$.gulp.parallel(html, styles, js, img, fonts, copy)
 );
 const dev = $.gulp.series(build, $.gulp.parallel(watcher, server));
 
