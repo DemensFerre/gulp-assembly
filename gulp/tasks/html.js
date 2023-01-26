@@ -1,5 +1,6 @@
 import fileInclude from "gulp-file-include";
 import htmlmin from "gulp-htmlmin";
+import replace from "gulp-replace";
 
 export const html = () => {
 	return $.gulp
@@ -13,6 +14,7 @@ export const html = () => {
 			})
 		)
 		.pipe(fileInclude())
+		.pipe(replace(/@img\//g, "./img/"))
 		.pipe(
 			$.gulpIf(
 				$.app.isProd,
