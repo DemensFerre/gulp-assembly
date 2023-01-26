@@ -8,7 +8,8 @@ export const path = {
 		styles: `${src}/scss/*.scss`,
 		html: `${src}/html/*.html`,
 		js: `${src}/js/*.js`,
-		img: `${src}/img/**/*.*`,
+		img: `${src}/img/**/*.{jpg,jpeg,png,gif,webp}`,
+		svg: `${src}/img/**/*.svg`,
 		fonts: `${src}/fonts/*.*`,
 	},
 	build: {

@@ -10,10 +10,10 @@ import { app } from "./gulp/config/app.js";
 global.$ = {
 	gulp: gulp,
 	path: path,
+	app: app,
 	gulpIf: gulpIf,
 	browserSync: browserSync,
 	notify: notify,
-	app: app,
 	plumber: plumber,
 };
 
