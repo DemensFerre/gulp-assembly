@@ -21,25 +21,14 @@ export const styles = () => {
 			})
 		)
 		.pipe(sass())
-		.pipe(
-			$.gulpIf(
-				$.app.isDev,
-				$.gulp.dest($.path.build.styles, {
-					sourcemaps: $.app.isDev,
-				})
-			)
-		)
 		.pipe($.gulpIf($.app.isProd, autoPrefixer()))
 		.pipe($.gulpIf($.app.isProd, gcmq()))
 		.pipe($.gulpIf($.app.isProd, csso()))
 		.pipe(
-			$.gulpIf(
-				$.app.isProd,
-				rename({
-					suffix: ".min",
-				})
-			)
+			rename({
+				suffix: ".min",
+			})
 		)
-		.pipe($.gulpIf($.app.isProd, $.gulp.dest($.path.build.styles)))
+		.pipe($.gulp.dest($.path.build.styles))
 		.pipe($.browserSync.stream());
 };

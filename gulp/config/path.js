@@ -7,7 +7,7 @@ export const path = {
 	src: {
 		files: `${src}/files/**/*.*`,
 		styles: `${src}/scss/*.scss`,
-		html: `${src}/html/*.html`,
+		html: `${src}/html/pages/*.html`,
 		js: `${src}/js/*.js`,
 		img: `${src}/img/**/*.{jpg,jpeg,png,gif,webp}`,
 		svg: `${src}/img/**/*.svg`,
@@ -23,8 +23,8 @@ export const path = {
 	},
 	watch: {
 		files: `${src}/files/**/*.*`,
-		styles: `${src}/scss/**/*.scss`,
-		html: `${src}/**/*.html`,
+		styles: [`${src}/scss/**/*.scss`, `${src}/html/**/**/*.scss`],
+		html: `${src}/html/**/**/*.html`,
 		js: `${src}/js/**/*.js`,
 		img: `${src}/img/**/*.*`,
 		fonts: `${src}/fonts/*.*`,
